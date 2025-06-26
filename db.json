@@ -1,0 +1,99 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "role": "Admin"
+    },
+    {
+      "id": "2",
+      "name": "Project Manager",
+      "email": "manager@gmail.com",
+      "password": "123456",
+      "role": "Project Manager"
+    },
+    {
+      "id": "3",
+      "name": "Developer User",
+      "email": "dev@gmail.com",
+      "password": "123456",
+      "role": "Developer"
+    },
+    {
+      "id": "31",
+      "name": "pranav solanki",
+      "email": "pranav@gmail.com",
+      "password": "123456",
+      "role": "Developer"
+    },
+    {
+      "id": 691,
+      "name": "Nikku",
+      "email": "Nikku@gmail.com",
+      "password": "123456",
+      "role": "Developer"
+    },
+    {
+      "id": 513,
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "password": "101010",
+      "role": "Project Manager"
+    },
+    {
+      "id": 472,
+      "name": "user3",
+      "email": "user3@gmail.com",
+      "password": "reerytu",
+      "role": "Project Manager"
+    },
+    {
+      "id": 330,
+      "name": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "678876",
+      "role": "Admin"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "Project Alpha",
+      "status": "Active",
+      "startDate": "2024-06-01",
+      "endDate": "2024-07-30",
+      "assignedUsers": [
+        2,
+        3
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "projectId": 1,
+      "title": "Create Dashboard UI",
+      "status": "To Do",
+      "priority": "High",
+      "dueDate": "2024-07-10"
+    },
+    {
+      "id": "2",
+      "projectId": 1,
+      "title": "Set up JSON server",
+      "status": "Done",
+      "priority": "Medium",
+      "dueDate": "2024-06-28"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "message": "New task assigned to you.",
+      "userId": 3,
+      "read": false
+    }
+  ]
+}
