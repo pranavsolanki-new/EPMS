@@ -1,0 +1,17 @@
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  mat-form-field {
+    flex: 1 1 auto;
+  }
+
+  button {
+    //align-self: center;
+    margin-top: 13px;
+  }
+}
+

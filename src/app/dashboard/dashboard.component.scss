@@ -1,0 +1,35 @@
+
+
+.row{
+    display: flex ;
+    direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap:wrap
+
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+.card{
+    text-align:center;
+    padding:20px;
+    border-bottom: solid 1px #e3dede !important;
+}
+
+.chart-wrapper {
+    flex: 1;
+    padding: 20px;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    canvas {
+        max-width:300px !important;
+        height: 300px !important;
+    }
+}

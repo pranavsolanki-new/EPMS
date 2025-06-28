@@ -1,14 +1,20 @@
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { inject, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonService } from '../core/common.service';
 export const RoleGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
    const router = inject(Router);
-   const snackbar = inject(MatSnackBar)
+   const commonservice = inject(CommonService)
    const desiredRoles:string[] =route.data['roles']
    const userData = localStorage.getItem('CurrentEmployee');
    let navigation;
+   let data={
+      message:'You need to login to access this page',
+      button:'Close',
+      duration:2000
+   }
    if(!userData){
-     snackbar.open('You need to login to access this page','Close',{duration:2000})
+     commonservice.getSnackBar(data)
     router.navigate(['/auth/login'])
     return false;
    }
@@ -20,7 +26,8 @@ export const RoleGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:Rou
     return true
    }
    else{
-   snackbar.open('Not Authorized to access this page','Close',{duration:2000})
+      data.message ='Not Authorized to access this page'
+       commonservice.getSnackBar(data);
     router.navigate([navigation])
     return false;
    }

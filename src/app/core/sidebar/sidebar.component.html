@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+ <button mat-icon-button (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+    </button>
+    EPMS
+</mat-toolbar>
+<mat-nav-list style="margin-left: 12px;">
+  <a mat-list-item routerLink="/dashboard" (click)="closeSidenav()">
+    <mat-icon>dashboard</mat-icon>
+    <span class="text-centre">Dashboard</span>
+  </a>
+  <a mat-list-item routerLink="/users" (click)="closeSidenav()">
+    <mat-icon>group</mat-icon>
+    <span class="text-centre">Users</span>
+  </a>
+  <a mat-list-item routerLink="/projects" (click)="closeSidenav()">
+    <mat-icon>assignment</mat-icon>
+    <span class="text-centre">Projects</span>
+  </a>
+</mat-nav-list>
+

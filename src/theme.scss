@@ -1,0 +1,14 @@
+/*@use '@angular/material' as mat;
+@include mat.core();
+$primary-palette: mat.define-pallete(mat.$indigo-palette);
+$accent-palette: mat.define-pallete(mat.$pink-palette);
+$warn-palette: mat.define-pallete(mat.$red-palette);
+$custom-theme: mat.define-light-theme((
+    color:(
+        primary: $primary-pallete,
+        accesnt: $accent-pallete,
+        warn: $warn-pallete
+    ),
+    typography: mat.define-typography-config(),
+));
+@include mat.all-component-themes($custom-theme); */

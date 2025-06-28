@@ -1,0 +1,29 @@
+<div clsss="row" [style.display]="'flex'">
+    <div class="dashboard-stats">
+        <mat-card class="card">
+            <h3>Project Count</h3>
+            <p>{{dashboardStats?.totalProjects}}</p>
+        </mat-card>
+        <mat-card class="card">
+            <h3>Active Users</h3>
+            <p>{{dashboardStats?.activeUsers}}</p>
+        </mat-card>
+        <mat-card class="card">
+            <h3>Overdue Tasks</h3>
+            <p>{{dashboardStats?.overdueTasks}}</p>
+        </mat-card>
+    </div>
+  
+    <div class="chart-wrapper">
+          
+        <canvas  baseChart 
+            [data]="{
+                labels:chartLabels,
+                datasets:[{data:chartData}]
+            }"
+            [type]="'doughnut'"
+            [options]="doughnutChartOptions"
+        >
+        </canvas>
+    </div>
+</div>

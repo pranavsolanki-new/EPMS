@@ -1,28 +1,28 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Admin User",
       "email": "admin@gmail.com",
       "password": "123456",
       "role": "Admin"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Project Manager",
       "email": "manager@gmail.com",
       "password": "123456",
       "role": "Project Manager"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Developer User",
       "email": "dev@gmail.com",
       "password": "123456",
       "role": "Developer"
     },
     {
-      "id": "31",
+      "id": 31,
       "name": "pranav solanki",
       "email": "pranav@gmail.com",
       "password": "123456",
@@ -59,15 +59,103 @@
   ],
   "projects": [
     {
-      "id": "1",
-      "name": "Project Alpha",
-      "status": "Active",
+      "id": 1,
+      "name": "Dashboard Revamp",
+      "status": "In Progress",
       "startDate": "2024-06-01",
-      "endDate": "2024-07-30",
-      "assignedUsers": [
-        2,
-        3
-      ]
+      "endDate": "2024-07-15",
+      "assignedUsers": [1, 2, 3],
+      "description": "Upgrade dashboard UI/UX and functionality"
+    },
+    {
+      "id": 2,
+      "name": "New Landing Page",
+      "status": "Completed",
+      "startDate": "2024-04-01",
+      "endDate": "2024-05-20",
+      "assignedUsers": [2, 4],
+      "description": "Create new landing page for marketing campaign"
+    },
+    {
+      "id": 3,
+      "name": "Mobile App Optimization",
+      "status": "Pending",
+      "startDate": "2024-08-01",
+      "endDate": "2024-09-30",
+      "assignedUsers": [3, 5],
+      "description": "Improve app performance and loading time"
+    },
+    {
+      "id": 4,
+      "name": "CRM Integration",
+      "status": "In Progress",
+      "startDate": "2024-07-10",
+      "endDate": "2024-08-25",
+      "assignedUsers": [1, 4],
+      "description": "Integrate third-party CRM for sales workflow"
+    },
+    {
+      "id": 5,
+      "name": "Backend API Refactor",
+      "status": "In Progress",
+      "startDate": "2024-06-20",
+      "endDate": "2024-08-01",
+      "assignedUsers": [2, 3, 5],
+      "description": "Restructure backend services and APIs"
+    },
+    {
+      "id": 6,
+      "name": "Employee Onboarding Portal",
+      "status": "Completed",
+      "startDate": "2024-01-15",
+      "endDate": "2024-03-05",
+      "assignedUsers": [1, 2],
+      "description": "Develop internal portal for new hires"
+    },
+    {
+      "id": 7,
+      "name": "AI Chatbot Integration",
+      "status": "Pending",
+      "startDate": "2024-09-01",
+      "endDate": "2024-10-20",
+      "assignedUsers": [3, 5],
+      "description": "Integrate AI chatbot on customer support site"
+    },
+    {
+      "id": 8,
+      "name": "SEO Audit & Fix",
+      "status": "In Progress",
+      "startDate": "2024-06-05",
+      "endDate": "2024-07-10",
+      "assignedUsers": [2, 4],
+      "description": "Improve SEO ranking and fix technical issues"
+    },
+    {
+      "id": 9,
+      "name": "Product Roadmap Planning",
+      "status": "Completed",
+      "startDate": "2024-03-01",
+      "endDate": "2024-04-15",
+      "assignedUsers": [1, 5],
+      "description": "Define product goals and milestones for 2025"
+    },
+    {
+      "id": 10,
+      "name": "Cloud Migration",
+      "status": "In Progress",
+      "startDate": "2024-07-01",
+      "endDate": "2024-09-10",
+      "assignedUsers": [3, 4, 5],
+      "description": "Move infrastructure to cloud-based servers"
+    },
+    {
+      "id": 11,
+      "name": "Marketing Analytics Dashboard",
+      "status": "Pending",
+      "startDate": "2024-08-15",
+      "endDate": "2024-10-05",
+      "assignedUsers": [2, 3],
+      "description": "Build analytics dashboard for marketing metrics"
     }
   ],
   "tasks": [
@@ -95,5 +183,10 @@
       "userId": 3,
       "read": false
     }
-  ]
+  ],
+  "dashboardStats":{
+    "totalProjects":5,
+    "activeUsers":10,
+    "overdueTasks":2
+  }
 }

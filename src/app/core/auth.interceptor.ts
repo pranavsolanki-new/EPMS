@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+``
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 

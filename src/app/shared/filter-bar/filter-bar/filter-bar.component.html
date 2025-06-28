@@ -1,0 +1,29 @@
+<form class="filter-container" [formGroup]="filterForm">
+  <mat-form-field>
+    <input matInput placeholder="Search....." formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let st of statuses" [value]="st">{{st}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select From Date</mat-label>
+    <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" [max]="maxDate">
+    <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+    <mat-datepicker #fromPicker></mat-datepicker>
+  </mat-form-field>
+
+  
+  <mat-form-field>
+    <mat-label>Select To Date</mat-label>
+    <input matInput [matDatepicker]="toPicker" formControlName="toDate" [max]="maxDate">
+    <mat-datepicker-toggle matSuffix [for]="toPicker" ></mat-datepicker-toggle>
+    <mat-datepicker #toPicker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="reset()" >Reset</button>
+</form>
