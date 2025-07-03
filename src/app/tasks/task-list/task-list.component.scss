@@ -1,0 +1,42 @@
+.task-board {
+  display: flex;
+  gap: 16px;
+  padding: 10px;
+  height: 400px;
+  background-color: #f7f7f7;
+  overflow-x: auto;
+}
+
+.task-column {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.task-column h3 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.task-card {
+  background: #e0e0e0;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: grab;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.task-card:active {
+  cursor: grabbing;
+  background-color: #b0bec5;
+}
+

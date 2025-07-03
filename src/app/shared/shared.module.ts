@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FilterBarComponent } from './filter-bar/filter-bar/filter-bar.component';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     FilterBarComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports:[
-    FilterBarComponent
+    FilterBarComponent,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }

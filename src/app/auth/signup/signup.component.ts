@@ -22,14 +22,15 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', [Validators.required]],
-
+      id:null
     })
 
   }
 
   onSubmit(formvalue: any) {
     console.log(formvalue)
-    formvalue['id'] = Math.floor(10 + Math.random() * (1000 - 10))
+    const id = Math.floor(10 + Math.random() * 1000);
+     formvalue.patchValue({ id: String(id) });
     this.authservice.postLogin(formvalue).subscribe({next:(res) => {
       if (res) {
         console.log(res)

@@ -10,11 +10,16 @@ import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from './shared/shared.module';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { AddEditTaskComponent } from './tasks/add-edit-task/add-edit-task.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TaskListComponent,
+    AddEditTaskComponent,
    
   ],
   imports: [
@@ -26,6 +31,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     RouterModule,
     NgChartsModule,
+    DragDropModule
     
   ],
   providers: [],

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DashboardService } from './dashboard.service';
-import { ChartOptions, ChartType } from 'chart.js';
+import { Chart, ChartOptions, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',

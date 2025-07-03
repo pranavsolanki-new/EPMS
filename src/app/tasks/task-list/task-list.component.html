@@ -1,0 +1,22 @@
+<div class="task-board">
+  <div class="task-column" cdkDropList [cdkDropListData]="todoTasks" (cdkDropListDropped)="drop($event, 'To Do')">
+    <h3>To Do</h3>
+    <div class="task-card" *ngFor="let task of todoTasks" cdkDrag>
+      {{ task.title }}
+    </div>
+  </div>
+
+  <div class="task-column" cdkDropList [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="drop($event, 'In Progress')">
+    <h3>In Progress</h3>
+    <div class="task-card" *ngFor="let task of inProgressTasks" cdkDrag>
+      {{ task.title }}
+    </div>
+  </div>
+
+  <div class="task-column" cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="drop($event, 'Done')">
+    <h3>Done</h3>
+    <div class="task-card" *ngFor="let task of doneTasks" cdkDrag>
+      {{ task.title }}
+    </div>
+  </div>
+</div>

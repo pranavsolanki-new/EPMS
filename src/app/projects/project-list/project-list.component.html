@@ -2,7 +2,7 @@
     <h2>Projects</h2>
 
     <div style="text-align: right; margin-bottom: 10px;">
-        <button mat-raised-button color="primary">+ Add Project</button>
+        <button mat-raised-button color="primary" (click)="addProject()">+ Add Project</button>
     </div>
 <app-filter-bar
   [statuses]="['In Progress', 'Completed','Pending' ,'All']"
@@ -13,40 +13,29 @@
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
             <!-- Name Column -->
-            <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-
+            <ng-container *ngFor="let column of displayedColumns;" [matColumnDef]="column">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnLabel[column]}}</th>
-                <td mat-cell *matCellDef="let project">{{project[column]}}
+                <td mat-cell *matCellDef="let project" >{{project[column]}}
                     <span *ngIf="column=='actions'">
-                        <button mat-icon-button color="primary">
+                        <button mat-icon-button color="primary" (click)="editProject(project?.id)" matTooltip="Edit Project">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn" (click)="deleteProject(project?.id)">
+                        <button mat-icon-button color="warn" (click)="deleteProject(project?.id)" matTooltip="Delete Project">
                             <mat-icon>delete</mat-icon>
+                        </button>
+                          <button mat-icon-button  (click)="viewtasks(project?.id)" matTooltip="View Tasks"> 
+                            <mat-icon>assignment</mat-icon>
                         </button>
                     </span>
                 </td>
 
             </ng-container>
-            <!--  Actions   routerLink="/projects/add" [routerLink]="['/projects/edit', project.id]"
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let project">
-          <button mat-icon-button color="primary" >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="deleteProject(project.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container> 
-      -->
-
+            
 
 
             <!-- Header + Row defs -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let project; columns: displayedColumns;" trackBy:trackByProjectId></tr>
         </table>
 
         <mat-paginator [pageSize]="5" [length]="dataSource.data.length" [pageSizeOptions]="[5,10,20]" showFirstLastButtons="true" (page)="OnPageChange($event)"></mat-paginator>

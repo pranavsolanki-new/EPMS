@@ -5,24 +5,35 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProjectService {
-   url='http://localhost:3000/projects'
+   
   constructor(private http:HttpClient) {
 
    }
  
-  getProjectListData(){
-    return this.http.get(this.url)
+  getProjectListData(id?:string){
+   let  url='http://localhost:3000/projects/'
+    if(id){
+      url=url+id;
+      return this.http.get(url)
+    }
+    else{
+      return this.http.get(url)
+    }
+    
   }
 
-  AddProjects(data:any){
-   return this.http.post(this.url,data)
+  addProjects(data:any){
+     let  url='http://localhost:3000/projects/'
+   return this.http.post(url,data)
   }
 
-  EditProjects(data:any){
-return this.http.put(this.url,data)
+  editProjects(data:any){
+    let url = 'http://localhost:3000/projects/'+data.id
+return this.http.put(url,data)
   }
 
-  DeleteProjects(){
-return this.http.delete(this.url)
+  deleteProjects(id:string){
+     let url = 'http://localhost:3000/projects/'+id;
+     return this.http.delete(url)
   }
 }
