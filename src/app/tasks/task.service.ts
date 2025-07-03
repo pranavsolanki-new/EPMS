@@ -7,9 +7,14 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(projectId: number) {
+  getTasksByProject(projectId: string) {
     return this.http.get<[]>(`${this.baseUrl}?projectId=${projectId}`);
   }
+
+  getTasks(taskId: string) {
+    return this.http.get<[]>(`${this.baseUrl}/${taskId}`);
+  }
+
 
   addTask(task: any) {
     return this.http.post<any>(this.baseUrl, task);
@@ -19,7 +24,7 @@ export class TaskService {
     return this.http.put(`${this.baseUrl}/${task.id}`, task);
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: string) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

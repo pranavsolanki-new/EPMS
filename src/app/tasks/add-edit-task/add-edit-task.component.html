@@ -1,1 +1,42 @@
-<p>add-edit-task works!</p>
+<mat-card class="taskform-card">
+<h2 >{{ mode=='edit' ? 'Edit Project' : 'Add Project'}}</h2>
+    <form [formGroup]="taskForm" class="form-flex">
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Task Name</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Task Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           
+        </div>
+        <div class="form-row">
+             <mat-form-field>
+                <mat-label>Due Date</mat-label>
+                <input matInput  [matDatepicker]="duePicker" formControlName="dueDate">
+                  <mat-datepicker-toggle matSuffix [for]="duePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #duePicker></mat-datepicker>
+            </mat-form-field>
+             <mat-form-field>
+                <mat-label>Task Priority</mat-label>
+                <mat-select formControlName="priority">
+                    <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-row">
+            <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Enter Description" formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="button-row">
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="taskForm.invalid">{{mode =='add' ? 'Add Task' : 'Update Task'}}</button>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,30 @@
+.taskform-card{
+max-width:800px;
+padding:20px;
+margin:30px auto;
+box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.form-flex{
+    display:flex;
+    gap:20px;
+    flex-direction:column
+}
+.form-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+}
+
+.form-row mat-form-field{
+ flex: 1 1 45%
+}
+
+.full-width{
+  flex: 1 1 100%
+}
+.button-row{
+    display: flex;
+    gap:20px;
+    justify-content: flex-end;
+}
+

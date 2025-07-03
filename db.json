@@ -113,26 +113,89 @@
           "name": "pranav solanki"
         }
       ]
+    },
+    {
+      "id": "942",
+      "name": "Notification module",
+      "status": "Completed",
+      "startDate": "2025-07-01",
+      "endDate": "2025-07-03",
+      "description": "notification",
+      "assignedUsers": [
+        {
+          "id": "31",
+          "name": "pranav solanki"
+        },
+        {
+          "id": "691",
+          "name": "Nikku"
+        }
+      ]
     }
   ],
   "tasks": [
     {
-      "id": "1",
-      "projectId": "1",
-      "name": "Create Dashboard UI",
+      "title": "Create Dashboard UI",
       "status": "To Do",
+      "dueDate": "2024-07-16",
+      "description": "dashboard creation for EPMS  Project",
       "priority": "High",
-      "dueDate": "2024-07-10",
-      "description":"dashboard creation for EPMS"
+      "id": "11",
+      "projectId": "536"
     },
     {
-      "id": "2",
-      "projectId": "1",
-      "name": "Set up JSON server",
-      "status": "Done",
+      "id": "515",
+      "title": "Pagination",
+      "status": "In Progress",
+      "dueDate": "2025-07-09",
+      "description": "pagination using angular",
       "priority": "Medium",
-      "dueDate": "2024-06-28",
-      "description":"Json Server setup on local"
+      "projectId": "536"
+    },
+    {
+      "id": "551",
+      "title": "Header",
+      "status": "Done",
+      "dueDate": "2025-07-03",
+      "description": "sticky header",
+      "priority": "Low",
+      "projectId": "536"
+    },
+    {
+      "id": "995",
+      "title": "Footer",
+      "status": "In Progress",
+      "dueDate": "2025-07-05",
+      "description": "common footer",
+      "priority": "Low",
+      "projectId": "815"
+    },
+    {
+      "id": "524",
+      "title": "Side bar",
+      "status": "To Do",
+      "dueDate": "2025-07-07",
+      "description": "side nav bar for EPMS",
+      "priority": "High",
+      "projectId": "815"
+    },
+    {
+      "id": "92",
+      "title": "Notification module",
+      "status": "To Do",
+      "dueDate": "2025-07-04",
+      "description": "notification",
+      "priority": "Low",
+      "projectId": "536"
+    },
+    {
+      "id": "350",
+      "title": "button creation",
+      "status": "Done",
+      "dueDate": "2025-07-15",
+      "description": "button",
+      "priority": "High",
+      "projectId": "536"
     }
   ],
   "notifications": [

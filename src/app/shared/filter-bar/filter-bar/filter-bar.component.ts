@@ -9,6 +9,9 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 })
 export class FilterBarComponent {
   @Input() statuses: string[] = [];
+   @Input() fromDateLabel?: string='Select From Date';
+    @Input() toDateLabel?: string='Select To Date';
+     @Input() statusLabel?: string='Status'
   @Output() filtersChanged = new EventEmitter<any>();
    maxDate = new Date()
   filterForm = new FormGroup({

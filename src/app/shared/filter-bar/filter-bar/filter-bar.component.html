@@ -4,23 +4,23 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Status</mat-label>
+    <mat-label>{{statusLabel}}</mat-label>
     <mat-select formControlName="status">
       <mat-option *ngFor="let st of statuses" [value]="st">{{st}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Select From Date</mat-label>
-    <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" [max]="maxDate">
+    <mat-label>{{fromDateLabel}}</mat-label>
+    <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" > <!--[max]="maxDate"-->
     <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
     <mat-datepicker #fromPicker></mat-datepicker>
   </mat-form-field>
 
   
   <mat-form-field>
-    <mat-label>Select To Date</mat-label>
-    <input matInput [matDatepicker]="toPicker" formControlName="toDate" [max]="maxDate">
+    <mat-label>{{toDateLabel}}</mat-label>
+    <input matInput [matDatepicker]="toPicker" formControlName="toDate" [min]="filterForm.get('fromDate')?.value">
     <mat-datepicker-toggle matSuffix [for]="toPicker" ></mat-datepicker-toggle>
     <mat-datepicker #toPicker></mat-datepicker>
   </mat-form-field>

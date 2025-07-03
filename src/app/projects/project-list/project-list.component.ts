@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.component';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { Route, Router } from '@angular/router';
+import { CommonService } from 'src/app/core/common.service';
 
 @Component({
   selector: 'app-projects',
@@ -33,7 +34,9 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   filterEmpty: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private projectService: ProjectService,private dialog: MatDialog,private router:Router) { }
+  constructor(private projectService: ProjectService,private dialog: MatDialog,private router:Router,
+    private commonService :CommonService
+  ) { }
 
   ngOnInit() {
     this.getProjectList()
@@ -72,11 +75,11 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   applyFilters(value: any) {
     console.log(value)
     console.log(Object.values(value))
-    this.dataSource.data = this.filterEmpty;
+    this.dataSource.data = [...this.filterEmpty];
     let nullChecker = Object.values(value).every((x) => x == '' || x == null)
 
     if (nullChecker) {
-      this.dataSource.data = this.filterEmpty
+      this.dataSource.data = [...this.filterEmpty];
     }
     else {
       const { name, status, fromDate, toDate } = value;
@@ -88,7 +91,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
       if (status != '') {
         console.log(status)
         if (status == 'All') {
-          this.dataSource.data = this.filterEmpty
+          this.dataSource.data = [...this.filterEmpty];
         }
         else {
           let filterdata = this.dataSource.data.filter((x: any) => x.status.includes(status))
@@ -137,18 +140,31 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result)=>{
       console.log(result)
       if(result){
+            let data={
+      message:'You have successfully Added Project',
+      button:'Close',
+      duration:2000
+   }
+   this.commonService.getSnackBar(data)
 this.getProjectList();
       }
     })
   }
 
   editProject(id:string){
+    console.log(id)
  const dialogRef = this.dialog.open(AddEditProjectComponent,{
       width:'800px',
       data:{mode:'Edit',id:id}
     })
     dialogRef.afterClosed().subscribe((result)=>{
       if(result){
+          let data={
+      message:'You have successfully Updated Project',
+      button:'Close',
+      duration:2000
+   }
+   this.commonService.getSnackBar(data)
          this.getProjectList();
       }
       console.log(result)
@@ -156,6 +172,7 @@ this.getProjectList();
   }
 
     deleteProject(id: string) {
+        console.log(id)
     this.dialog.open(ConfirmDialogComponent,{
       data:{
         title: 'Delete Project',
@@ -165,6 +182,12 @@ this.getProjectList();
       console.log(result)
       if(result){
          this.projectService.deleteProjects(id).subscribe((res)=>{
+              let data={
+      message:'You have successfully Deleted Project',
+      button:'Close',
+      duration:2000
+   }
+   this.commonService.getSnackBar(data)
           console.log(res);
           this.getProjectList();
          })
@@ -177,7 +200,8 @@ this.getProjectList();
   }
 
   viewtasks(id:string){
-   this.router.navigate(['/projects','id','tasks'])
+    console.log(id)
+   this.router.navigate(['/projects',id,'tasks'])
   }
 
 }

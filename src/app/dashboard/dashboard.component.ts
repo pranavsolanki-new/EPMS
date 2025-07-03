@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
     })
 
     this.dashboardService.getProjectStatus().subscribe({
-      next:(res)=>{
+      next:(res:any)=>{
+        console.log(res)
         this.chartLabels = res.labels;
         this.chartData = res.data
       }
