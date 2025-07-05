@@ -9,11 +9,12 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 })
 export class FilterBarComponent {
   @Input() statuses: string[] = [];
-   @Input() fromDateLabel?: string='Select From Date';
-    @Input() toDateLabel?: string='Select To Date';
-     @Input() statusLabel?: string='Status'
+  @Input() fromDateLabel?: string = 'Select From Date';
+  @Input() toDateLabel?: string = 'Select To Date';
+  @Input() statusLabel?: string = 'Status'
   @Output() filtersChanged = new EventEmitter<any>();
-   maxDate = new Date()
+  @Input() showDate!: boolean;
+  maxDate = new Date()
   filterForm = new FormGroup({
     name: new FormControl(''),
     status: new FormControl(''),
@@ -21,9 +22,17 @@ export class FilterBarComponent {
     toDate: new FormControl(null),
   })
   ngOnInit() {
-    this.filterForm.valueChanges.pipe(debounceTime(500),distinctUntilChanged()).subscribe((value)=>{
-      console.log(value)
-      this.filtersChanged.emit(value);
+    this.filterForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe((value) => {
+      if (this.showDate) this.filtersChanged.emit(value);
+      else {
+        let newValue: any = {}
+        for (let [key, val] of Object.entries(value)) {
+          if (key == 'name' || key == 'status') {
+            newValue[key] = val
+          }
+        }
+        this.filtersChanged.emit(newValue);
+      }
     })
   }
 

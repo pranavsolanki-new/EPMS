@@ -23,7 +23,8 @@ export class AddEditTaskComponent implements OnInit{
   ngOnInit(): void {
     this.mode = this.route.snapshot.url[0]?.path
     this.projectId = this.route.parent!.snapshot.paramMap.get('projectId') ?? '';
-    if(this.mode=='edit'){ this.taskId = this.route.snapshot.paramMap.get('taskId') ?? '';
+    if(this.mode=='edit'){ 
+    this.taskId = this.route.snapshot.paramMap.get('taskId') ?? '';
     this.taskService.getTasks(this.taskId).subscribe({
         next:(res)=>{
         console.log(res)

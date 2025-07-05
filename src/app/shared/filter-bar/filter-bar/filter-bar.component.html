@@ -1,4 +1,4 @@
-<form class="filter-container" [formGroup]="filterForm">
+<form class="filter-container" *ngIf="filterForm" [formGroup]="filterForm">
   <mat-form-field>
     <input matInput placeholder="Search....." formControlName="name">
   </mat-form-field>
@@ -10,7 +10,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="showDate">
     <mat-label>{{fromDateLabel}}</mat-label>
     <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" > <!--[max]="maxDate"-->
     <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
@@ -18,7 +18,7 @@
   </mat-form-field>
 
   
-  <mat-form-field>
+  <mat-form-field *ngIf="showDate">
     <mat-label>{{toDateLabel}}</mat-label>
     <input matInput [matDatepicker]="toPicker" formControlName="toDate" [min]="filterForm.get('fromDate')?.value">
     <mat-datepicker-toggle matSuffix [for]="toPicker" ></mat-datepicker-toggle>

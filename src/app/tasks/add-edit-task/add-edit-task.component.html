@@ -1,6 +1,6 @@
 <mat-card class="taskform-card">
 <h2 >{{ mode=='edit' ? 'Edit Project' : 'Add Project'}}</h2>
-    <form [formGroup]="taskForm" class="form-flex">
+    <form *ngIf="taskForm" [formGroup]="taskForm" class="form-flex">
         <div class="form-row">
             <mat-form-field>
                 <mat-label>Task Name</mat-label>

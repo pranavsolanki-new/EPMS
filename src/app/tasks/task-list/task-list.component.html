@@ -5,7 +5,7 @@
 </div>
 
  <app-filter-bar
-  [statuses]="['High', 'Medium','Low' ,'All']" [statusLabel]="'Priority'"
+  [statuses]="['High', 'Medium','Low' ,'All']" [statusLabel]="'Priority'" [showDate]="false"
   (filtersChanged)="applyFilters($event)">
 </app-filter-bar>
 
