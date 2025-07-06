@@ -44,7 +44,8 @@
           Role is required</mat-error>
       </mat-form-field>
       <div class="button-container">
-        <button mat-raised-button color="primary" style="width: 30%" type="submit" (click)="onSubmit(signupForm.value)">
+        <button mat-raised-button color="primary" style="width: 30%" type="submit" [disabled]="signupForm.invalid"
+          (click)="onSubmit(signupForm.value)">
           Sign Up
         </button>
       </div>

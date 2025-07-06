@@ -1,5 +1,6 @@
 
-
+<mat-card class="tasklist-card">
+    <h2 >Task List</h2>
 <div class="add-button">
     <button mat-raised-button color="primary" (click)="addTask()">+ Add Task</button>
 </div>
@@ -9,8 +10,6 @@
   (filtersChanged)="applyFilters($event)">
 </app-filter-bar>
 
-
-  <!-- Sort By -->
    <div class="filter-sort-bar" >
   <mat-form-field appearance="fill" style="min-width: 150px;">
     <mat-label>Sort By</mat-label>
@@ -80,7 +79,6 @@
      (cdkDropListDropped)="drop($event, 'Done')">
         <h3>Done</h3>
         <div *ngFor="let task of doneTasks">
-             <!--<ng-container *ngTemplateOutlet="taskCard;context:{$implicit:task}"></ng-container>-->
               <div class="task-card"  cdkDrag>
             <div class="task-header">
                 <strong>{{ task.title }}</strong>

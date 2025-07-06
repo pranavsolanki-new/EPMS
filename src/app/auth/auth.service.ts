@@ -17,7 +17,7 @@ export class AuthService {
      return this.http.get(url);
   }
   
-  postLogin(data: any) {
+  signUp(data: any) {
     let url = 'http://localhost:3000/users'
     return this.http.post(url, data);
   }

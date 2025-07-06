@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { ResetPasswordDialogComponent } from 'src/app/shared/reset-password-dialog/reset-password-dialog.component';
+import { NotificationService } from 'src/app/notification/notification.service';
 
 @Component({
   selector: 'app-users-list',
@@ -32,7 +33,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private userService: UsersService, private dialog: MatDialog, private router: Router,
-    private commonService: CommonService, private route: ActivatedRoute
+    private commonService: CommonService, private route: ActivatedRoute,private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -83,6 +84,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
               button: 'Close',
               duration: 2000
             }
+            this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
             this.commonService.getSnackBar(data)
             this.getUserData();
           },
@@ -93,43 +95,34 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   }
     
 
-  applyFilters(value: any) {
-    console.log(value)
- let nullChecker = Object.values(value).every((x) => x == '' || x == null)
-    if (nullChecker) {
-       this.dataSource.data = [...this.filterEmpty];
-    }
-    else {
-      const { name, status } = value;
-      this.dataSource.data = [...this.filterEmpty];
-      if(name!='' && status!=''){
-         let filterdata = this.dataSource.data.filter((x: any) => x.name.toLowerCase().includes(name) && x.role.includes(status))
-        this.dataSource.data = filterdata;
-        console.log(filterdata)
-      }
-      if (name != '') {
-        let filterdata = this.dataSource.data.filter((x: any) => x.name.toLowerCase().includes(name))
-        this.dataSource.data = filterdata;
-      }
-      if (status != '') {
-        console.log(status)
-        if (status == 'All') {
-          this.dataSource.data= [...this.filterEmpty]
-        }
-        else {
-          let filterdata = this.dataSource.data.filter((x: any) => x.role.includes(status)) 
-          this.dataSource.data = filterdata;
-        }
-      }  
-  } 
+applyFilters(value: any) {
+  console.log(value);
+
+  let nullChecker = Object.values(value).every((x) => x === '' || x === null);
+  if (nullChecker) {
+    this.dataSource.data = [...this.filterEmpty];
+    return;
+  }
+
+  const { name, status } = value;
+  let filteredData = [...this.filterEmpty];
+
+  if (name && name.trim() !== '') {
+    filteredData = filteredData.filter((x: any) =>
+      x.name.toLowerCase().includes(name.trim().toLowerCase())
+    );
+  }
+
+  if (status && status !== 'All') {
+    filteredData = filteredData.filter((x: any) =>
+      x.role.includes(status)
+    );
+  }
+  this.dataSource.data = filteredData;
 }
 
   trackByUserId(index: number, user: any) {
     return user.id;
-  }
-
-  OnPageChange(event: any) {
-
   }
 
   resetPassword(id:string){

@@ -10,42 +10,50 @@ import { CommonService } from 'src/app/core/common.service';
   styleUrls: ['./notification-list.component.scss']
 })
 export class NotificationListComponent implements OnInit {
-  notifications$: Observable <any>;
-  unreadCount :Observable <any>
+  notifications$!: Observable <any>;
+  unreadCount! :Observable <any>
 
   constructor(
     private notificationService: NotificationService,
-    private snackBar: MatSnackBar,
     private commonService:CommonService
   ) {
-     this.notifications$ = this.notificationService.notifications$
+
+  }
+
+  ngOnInit(): void {
+    //this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
+         this.notifications$ = this.notificationService.notifications$
      this.unreadCount = this.notificationService.unreadCount$
     console.log(this.notifications$)
   }
 
-  ngOnInit(): void {
-   // this.loadNotifications();
-  }
-
-  loadNotifications() {
-   this.notificationService.addNotification({message:'header added',type:'info'});
-  }
-
    markAllRead() {
     this.notificationService.markAllAsRead().subscribe({
-      next: () =>  this.commonService.showToast('info', `All Notifications has been read`),
-      error: () => alert('Error marking notifications'),
+      next: () =>  {
+        this.commonService.showToast('info', `All Notifications has been read`)
+        this.notificationService.getNotifications()
+      },
+      error: () => this.commonService.showToast('warning', `something went wrong`)
     });
   }
 
   markAsRead(notificationId: string) {
-    this.notificationService.markAsRead(notificationId).subscribe((res)=>{
+    this.notificationService.markAsRead(notificationId).subscribe({
+      next: () =>  {
+      this.notificationService.getNotifications()
       this.commonService.showToast('info', `The notification has been read`)
+      },
+      error: () => this.commonService.showToast('warning', `something went wrong`)
     });
   }
 
   deleteNotification(id:string) {
-  this.notificationService.deleteNotification(id).subscribe((res)=>{
+  this.notificationService.deleteNotification(id).subscribe({
+       next: () =>  {
+      this.notificationService.getNotifications()
+      this.commonService.showToast('info', `The notification has been deleted`)
+      },
+      error: () => this.commonService.showToast('warning', `something went wrong`) 
   })
   }
 }

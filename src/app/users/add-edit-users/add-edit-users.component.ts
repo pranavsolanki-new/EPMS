@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../users.service';
 import { CommonService } from 'src/app/core/common.service';
+import { NotificationService } from 'src/app/notification/notification.service';
 
 @Component({
   selector: 'app-add-edit-users',
@@ -14,7 +15,7 @@ export class AddEditUsersComponent implements OnInit {
   userId:string='';
   userForm!:FormGroup;
   roles =['Project Manager','Admin','Developer']
-   constructor(private route: ActivatedRoute,private router:Router,private fb:FormBuilder,private userService: UsersService,private commonService :CommonService,){}
+   constructor(private route: ActivatedRoute,private router:Router,private notificationService: NotificationService,private fb:FormBuilder,private userService: UsersService,private commonService :CommonService,){}
 
 ngOnInit(): void {
     this.mode = this.route.snapshot.url[0]?.path
@@ -62,6 +63,7 @@ Submit(){
       button:'Close',
       duration:2000
    }
+   this.notificationService.addNotification({message:'new user added',type:'info',timestamp:new Date()});
    this.commonService.getSnackBar(data)
    this.router.navigate(['/users'])
     },
@@ -77,6 +79,7 @@ Submit(){
       button:'Close',
       duration:2000
    }
+   this.notificationService.addNotification({message:'1 userinfo updated',type:'info',timestamp:new Date()});
    this.commonService.getSnackBar(data)
    this.router.navigate(['/users'])
     },

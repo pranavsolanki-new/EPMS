@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { materialize } from 'rxjs';
-import { MaterialModule } from '../shared/material/material.module';
 import { DashboardService } from './dashboard.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +17,7 @@ import { DashboardService } from './dashboard.service';
     DashboardRoutingModule,
     NgChartsModule,
     HttpClientModule,
-    MaterialModule
+    SharedModule
   ],
   providers: [DashboardService]
 

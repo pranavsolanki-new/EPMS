@@ -1,6 +1,6 @@
 <div class="notification-badge" *ngIf="(unreadCount$ | async) as count">
   <span *ngIf="count > 0" matBadge="{{count}}" matBadgeColor="warn" style="margin-right: 13px;">
-    <button mat-icon-button style="margin-right: -11px;">
+    <button mat-icon-button style="margin-right: -11px;" (click)="navigateToNotification()">
     <mat-icon>notifications</mat-icon>
   </button></span>
 </div>

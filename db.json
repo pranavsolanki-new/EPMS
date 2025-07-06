@@ -31,7 +31,7 @@
     {
       "id": "691",
       "name": "Nikku",
-      "email": "Nikku@gmail.com",
+      "email": "nikku@gmail.com",
       "password": "123456",
       "role": "Developer"
     },
@@ -55,6 +55,41 @@
       "email": "admin2@gmail.com",
       "password": "678876",
       "role": "Admin"
+    },
+    {
+      "id": "622",
+      "name": "raju",
+      "email": "raju@gmail.com",
+      "password": "123456",
+      "role": "Developer"
+    },
+    {
+      "id": "874",
+      "name": "sonu",
+      "email": "sonu@gmail.com",
+      "password": "123456",
+      "role": "Admin"
+    },
+    {
+      "id": "654",
+      "name": "vicky",
+      "email": "vicky@gmail.com",
+      "password": "123456",
+      "role": "Developer"
+    },
+    {
+      "name": "Rajkumar",
+      "email": "rajkumar@gmail.com",
+      "role": "Admin",
+      "password": "220022",
+      "id": "971"
+    },
+    {
+      "name": "meenakshi",
+      "email": "meenu2345@gmail.com",
+      "role": "Developer",
+      "password": "567890",
+      "id": "94"
     }
   ],
   "projects": [
@@ -131,6 +166,24 @@
           "name": "Nikku"
         }
       ]
+    },
+    {
+      "id": "284",
+      "name": "notification module",
+      "status": "In Progress",
+      "startDate": "2025-07-05",
+      "endDate": "2025-07-07",
+      "description": "notification module",
+      "assignedUsers": [
+        {
+          "id": "31",
+          "name": "pranav solanki"
+        },
+        {
+          "id": "691",
+          "name": "Nikku"
+        }
+      ]
     }
   ],
   "tasks": [
@@ -180,21 +233,39 @@
       "projectId": "815"
     },
     {
-      "id": "92",
-      "title": "Notification module",
-      "status": "To Do",
-      "dueDate": "2025-07-04",
-      "description": "notification",
-      "priority": "Low",
-      "projectId": "536"
-    },
-    {
       "id": "350",
       "title": "button creation",
       "status": "Done",
       "dueDate": "2025-07-15",
       "description": "button",
       "priority": "High",
+      "projectId": "536"
+    },
+    {
+      "id": "393",
+      "title": "logout button",
+      "status": "Done",
+      "dueDate": "2025-07-06",
+      "description": "logout",
+      "priority": "Medium",
+      "projectId": "536"
+    },
+    {
+      "id": "576",
+      "title": "sidenav ",
+      "status": "To Do",
+      "dueDate": "2025-07-09",
+      "description": "sidenav",
+      "priority": "High",
+      "projectId": "536"
+    },
+    {
+      "id": "652",
+      "title": "toast app",
+      "status": "In Progress",
+      "dueDate": "2025-07-08",
+      "description": null,
+      "priority": "Low",
       "projectId": "536"
     }
   ],
@@ -231,12 +302,57 @@
       "id": "98",
       "message": "header added",
       "type": "info",
+      "read": false,
+      "timestamp": "2025-07-05T15:32:00"
+    },
+    {
+      "id": "587",
+      "message": "New User SignedUp",
+      "type": "info",
+      "read": true,
+      "timestamp": "2025-07-06T15:32:00"
+    },
+    {
+      "id": "591",
+      "message": "New User SignedUp",
+      "type": "info",
+      "timestamp": "2025-07-06T13:37:12.759Z",
       "read": false
+    },
+    {
+      "id": "189",
+      "message": "1 project updated",
+      "type": "info",
+      "timestamp": "2025-07-06T15:10:31.922Z",
+      "read": false
+    },
+    {
+      "id": "702",
+      "message": "1 project deleted",
+      "type": "warning",
+      "timestamp": "2025-07-06T15:10:58.024Z",
+      "read": false
+    },
+    {
+      "id": "204",
+      "message": "header added",
+      "type": "info",
+      "timestamp": "2025-07-06T16:35:23.827Z",
+      "read": false
+    },
+    {
+      "id": "628",
+      "message": "header added",
+      "type": "info",
+      "timestamp": "2025-07-06T16:35:38.574Z",
+      "read": false
+    },
+    {
+      "id": "242",
+      "message": "header added",
+      "type": "info",
+      "timestamp": "2025-07-06T16:35:50.572Z",
+      "read": true
     }
-  ],
-  "dashboardStats": {
-    "totalProjects": 5,
-    "activeUsers": 10,
-    "overdueTasks": 2
-  }
+  ]
 }

@@ -12,7 +12,7 @@
 
   <mat-form-field *ngIf="showDate">
     <mat-label>{{fromDateLabel}}</mat-label>
-    <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" > <!--[max]="maxDate"-->
+    <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" >
     <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
     <mat-datepicker #fromPicker></mat-datepicker>
   </mat-form-field>

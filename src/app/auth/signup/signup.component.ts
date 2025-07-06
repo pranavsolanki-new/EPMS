@@ -4,6 +4,8 @@ import { ROLE_TYPE } from 'src/app/app.constant';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from 'src/app/core/common.service';
+import { NotificationService } from 'src/app/notification/notification.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,7 @@ export class SignupComponent implements OnInit {
   roles = ROLE_TYPE
   selectedValue: string = '';
   signupForm !: FormGroup
-  constructor(private fb: FormBuilder, private authservice: AuthService, private snackbar: MatSnackBar,private router:Router,private route:ActivatedRoute) { }
+  constructor(private fb: FormBuilder,private commonService: CommonService, private notificationService:NotificationService,  private authservice: AuthService, private snackbar: MatSnackBar,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -28,12 +30,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(formvalue: any) {
-    console.log(formvalue)
     const id = Math.floor(10 + Math.random() * 1000);
-     formvalue.patchValue({ id: String(id) });
-    this.authservice.postLogin(formvalue).subscribe({next:(res) => {
+     this.signupForm.patchValue({ id: String(id),email:formvalue.email.toLowerCase()});
+    this.authservice.signUp(this.signupForm.value).subscribe({next:(res) => {
       if (res) {
-        console.log(res)
+        this.notificationService.addNotification({message:'New User SignedUp',type:'info',timestamp:new Date()});
         this.snackbar.open('Account Created Successfully', 'Close',
           {
             duration: 3000,
@@ -46,10 +47,13 @@ export class SignupComponent implements OnInit {
       }
     },
     error:(err)=>{
-      this.snackbar.open(err,'Dismiss',{
-        duration:2000,
-        panelClass:['error-snackbar']
-      })
+      let data = {
+      message: err.message,
+      button: 'dismis',
+      duration: 3000,
+      classType:'error-snackbar'
+    }
+     this.commonService.getSnackBar(data);
     }
     })
   }

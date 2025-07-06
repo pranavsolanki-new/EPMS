@@ -11,12 +11,13 @@ import { CommonService } from '../common.service';
 export class HeaderComponent {
   @Output() toggleSidenav = new EventEmitter<void>();
   loginLogoutButton!:string
+  user:any
   constructor(private authService:AuthService,private router:Router,private commonservice:CommonService){
   }
 
   ngOnInit(){
-    const user = this.authService.getLoggedInUser()
-   if(user){
+   this.user = this.authService.getLoggedInUser()
+   if(this.user){
      this.loginLogoutButton = 'Logout'
    }
    else{
@@ -30,8 +31,8 @@ export class HeaderComponent {
     this.router.navigate(['/auth/login']);
     let data={
       message:'You have successfully loggedout',
-      button:'Close',
-      duration:2000
+      button:'dismis',
+      duration:4000
    }
    this.commonservice.getSnackBar(data)
   }

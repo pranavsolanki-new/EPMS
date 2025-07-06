@@ -1,6 +1,5 @@
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { inject, Inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { inject} from '@angular/core';
 import { CommonService } from '../core/common.service';
 export const RoleGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
    const router = inject(Router);

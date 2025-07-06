@@ -4,11 +4,11 @@
 </h2>
 
 <mat-list>
-    <div  *ngFor="let notif of notifications$ | async" style="border-bottom: 1px solid rgb(233, 231, 231);">
+    <div  *ngFor="let notif of notifications$ | async" class="notif-card">
     <mat-icon matListIcon>{{notif.read?'notifications_none':'notifications_active'}}</mat-icon>
-    <div matLine>{{ notif.message }}</div>
-    <small matLine>{{ notif.timestamp | date:'shortTime' }}</small>
+    <div matLine style="margin-bottom: -17px;">{{ notif.message }}</div>
+    <small matLine>{{ notif.timestamp | date:'medium' }}</small>
     <button mat-button color="primary" (click)="markAsRead(notif.id)" *ngIf="!notif.read">Mark as read</button>
-    <button mat-icon-button color="warn"(click)="deleteNotification(notif.id)"><mat-icon>delete</mat-icon></button>
-    </div>
+    <button mat-icon-button color="warn"(click)="deleteNotification(notif.id)"><mat-icon style="vertical-align: text-bottom;">delete</mat-icon></button> 
+</div>
 </mat-list>

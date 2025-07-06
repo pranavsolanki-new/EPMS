@@ -3,3 +3,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-snack-bar-container .error-snackbar {
+  color: #fff !important;
+  background: #f44336 !important;
+}
+
+.mat-snack-bar-container .success-snackbar {
+  background: #4caf50 !important;
+   color: #fff !important;
+}
+
+.mat-snack-bar-container .info-snackbar {
+   background: #2196f3 !important;
+     color: #fff !important;
+}
+
+

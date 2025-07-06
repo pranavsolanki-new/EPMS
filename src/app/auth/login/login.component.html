@@ -5,25 +5,27 @@
             <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" placeholder="Enter your email">
-                <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">Email is required</mat-error>
-             <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Enter Correct Email</mat-error>
+                <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">Email
+                    is required</mat-error>
+                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Enter Correct Email</mat-error>
             </mat-form-field>
-
             <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password" placeholder="Enter your password">
-                <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf=" loginForm.get('password')?.hasError('minlength')">Min. Password length is 6</mat-error>
+                <mat-error
+                    *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">Password
+                    is required</mat-error>
+                <mat-error *ngIf=" loginForm.get('password')?.hasError('minlength')">Min. Password length is
+                    6</mat-error>
             </mat-form-field>
-
-
             <div class="button-container">
-            <button mat-raised-button color="primary" style="width: 30%;" type="submit" [disabled]="loginForm.invalid">Login</button>
+                <button mat-raised-button color="primary" style="width: 30%;" type="submit"
+                    [disabled]="loginForm.invalid">Login</button>
             </div>
         </form>
         <p class="signup">
-             Don't have an account?
-         <a routerLink="/auth/signup">Sign Up here</a>
+            Don't have an account?
+            <a routerLink="/auth/signup">Sign Up here</a>
         </p>
     </mat-card>
 </div>

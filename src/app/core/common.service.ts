@@ -15,7 +15,8 @@ export class CommonService {
           {
             duration: data?.duration ? data?.duration: 0,
             horizontalPosition:data?.horizontalPosition ? data.horizontalPosition : 'center',
-            verticalPosition:data?.verticalPosition ? data.horizontalPosition : 'top'
+            verticalPosition:data?.verticalPosition ? data.horizontalPosition : 'top',
+            panelClass:data.classType   // 3 class- success,error,info
           })
   }
 

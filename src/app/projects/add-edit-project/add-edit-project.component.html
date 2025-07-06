@@ -13,26 +13,23 @@
                     <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
                 </mat-select>
             </mat-form-field>
-           
         </div>
         <div class="form-row">
-
-             <mat-form-field>
+            <mat-form-field>
                 <mat-label>Start Date</mat-label>
-                <input matInput  [matDatepicker]="fromPicker" formControlName="startDate">
-                  <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #fromPicker></mat-datepicker>
+                <input matInput [matDatepicker]="fromPicker" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+                <mat-datepicker #fromPicker></mat-datepicker>
             </mat-form-field>
-
             <mat-form-field>
                 <mat-label>End Date</mat-label>
-                <input matInput  [matDatepicker]="toPicker"formControlName="endDate" [min]="projectForm.get('startDate')?.value">
-                  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
-    <mat-datepicker #toPicker></mat-datepicker>
+                <input matInput [matDatepicker]="toPicker" formControlName="endDate"
+                    [min]="projectForm.get('startDate')?.value">
+                <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+                <mat-datepicker #toPicker></mat-datepicker>
             </mat-form-field>
-
         </div>
-      <div class="form-row">
+        <div class="form-row">
             <mat-form-field class="full-width">
                 <mat-label>Assign Users</mat-label>
                 <mat-select formControlName="assignedUsers" multiple>
@@ -51,6 +48,7 @@
 
 <mat-dialog-actions align="end">
     <button mat-button (click)="dialogRef.close();">Cancel</button>
-    <button mat-raised-button color="primary" (click)="submit()" [disabled]="projectForm.invalid">{{data.mode =='Add' ? 'Save' : 'Update'}}</button>
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="projectForm.invalid">{{data.mode =='Add' ?
+        'Add Project' : 'Update Project'}}</button>
 </mat-dialog-actions>
 

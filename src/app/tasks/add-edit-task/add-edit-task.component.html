@@ -36,6 +36,7 @@
             </mat-form-field>
         </div>
         <div class="button-row">
+            <button mat-button (click)="onCancel()">Cancel</button>
     <button mat-raised-button color="primary" (click)="submit()" [disabled]="taskForm.invalid">{{mode =='add' ? 'Add Task' : 'Update Task'}}</button>
         </div>
     </form>

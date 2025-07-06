@@ -6,6 +6,7 @@ import { CommonService } from '../../core/common.service';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss']
 })
+
 export class ToastComponent {
   message = '';
   type = '';

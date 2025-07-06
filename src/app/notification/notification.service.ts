@@ -21,6 +21,7 @@ export class NotificationService {
      this.http.get<any[]>(this.apiUrl).subscribe({
         next:(notif:any)=>{
           console.log(notif)
+          notif.sort((a:any,b:any)=>{ return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()})
           this.notificationSubject.next(notif)
           const unread = notif.filter((n:any) => !n.read).length;
         this.unreadCount.next(unread);
@@ -44,7 +45,6 @@ export class NotificationService {
    })
    console.log(updateRqst)
    return forkJoin(updateRqst).pipe(tap(()=>{this.notificationSubject.next(updateNotif)}))
-    //return this.http.patch<any>(`${this.apiUrl}/${id}`, { read: true });
   }
 
  markAsRead(notificationId: string){
@@ -63,7 +63,7 @@ export class NotificationService {
     const id = Math.floor(10 + Math.random() * 1000);
     notification['id'] = String(id);
     notification['read'] = false;
-    this.http.post(this.apiUrl,notification).subscribe((res)=>{this.getNotifications})
+    this.http.post(this.apiUrl,notification).subscribe((res)=>{this.getNotifications()})
   }
 
   deleteNotification(id: string): Observable<void> {

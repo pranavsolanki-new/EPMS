@@ -21,6 +21,7 @@ export class FilterBarComponent {
     fromDate: new FormControl(null),
     toDate: new FormControl(null),
   })
+  
   ngOnInit() {
     this.filterForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe((value) => {
       if (this.showDate) this.filtersChanged.emit(value);

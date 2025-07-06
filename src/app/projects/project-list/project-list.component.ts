@@ -1,7 +1,6 @@
-import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { FormControl } from '@angular/forms';
-import { debounce, debounceTime, distinctUntilChanged } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -10,12 +9,15 @@ import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.co
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/core/common.service';
+import { filter } from 'rxjs';
+import { NotificationService } from 'src/app/notification/notification.service';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss']
 })
+
 export class ProjectListComponent implements OnInit, AfterViewInit {
   projectData!: any;
   dataSource: any = new MatTableDataSource<any>()
@@ -34,23 +36,19 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   filterEmpty: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private projectService: ProjectService,private dialog: MatDialog,private router:Router,
-    private commonService :CommonService
+  constructor(private projectService: ProjectService, private dialog: MatDialog, private router: Router,
+    private commonService: CommonService, private notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
-    this.getProjectList()
-
-    // this.searchControl.valueChanges.pipe(debounceTime(500),distinctUntilChanged()).subscribe((res)=>{
-    //   this.applyFilter(res);
-    // })
+    this.getProjectList();
   }
 
-  getProjectList(){
+  getProjectList() {
     this.projectService.getProjectListData().subscribe({
-      next: (res:any) => {
-        res?.forEach((element:any) => {
-          let users =element.assignedUsers.map((x:any)=>x.name).join(',')
+      next: (res: any) => {
+        res?.forEach((element: any) => {
+          let users = element.assignedUsers.map((x: any) => x.name).join(',')
           element.assignedUsers = users;
         })
         this.dataSource.data = res
@@ -66,137 +64,124 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort
   }
 
-  OnPageChange(event: any) {
-  }
-
   applyFilters(value: any) {
-    console.log(value)
-    console.log(Object.values(value))
-    this.dataSource.data = [...this.filterEmpty];
-    let nullChecker = Object.values(value).every((x) => x == '' || x == null)
-
+    let nullChecker = Object.values(value).every(x => x == '' || x == null);
     if (nullChecker) {
       this.dataSource.data = [...this.filterEmpty];
+      return;
     }
-    else {
-      const { name, status, fromDate, toDate } = value;
-      if (name != '') {
-        let filterdata = this.dataSource.data.filter((x: any) => x.name.toLowerCase().includes(name))
-        //console.log(filterdata)
-        this.dataSource.data = filterdata
-      }
-      if (status != '') {
-        console.log(status)
-        if (status == 'All') {
-          this.dataSource.data = [...this.filterEmpty];
-        }
-        else {
-          let filterdata = this.dataSource.data.filter((x: any) => x.status.includes(status))
-          this.dataSource.data = filterdata
+
+    const { name, status, fromDate, toDate } = value;
+    let filterData = [...this.filterEmpty];
+
+    if (name) {
+      filterData = filterData.filter((x: any) =>
+        x.name.toLowerCase().includes(name.toLowerCase())
+      );
+    }
+
+    if (status && status !== 'All') {
+      filterData = filterData.filter((x: any) => x.status === status);
+    }
+
+    if (fromDate || toDate) {
+      const fromTime = fromDate ? new Date(fromDate).getTime() : null;
+      const toTime = toDate ? new Date(toDate).getTime() : null;
+
+      filterData = filterData.filter((item: any) => {
+        const itemStart = new Date(item.startDate).getTime();
+        const itemEnd = new Date(item.endDate).getTime();
+
+        if (fromTime && toTime) {
+          return itemStart >= fromTime && itemEnd <= toTime;
         }
 
-      }
-      if (value.fromDate != null || value.toDate != null) {
+        if (fromTime && !toTime) {
+          return itemStart >= fromTime;
+        }
 
-        let filterdata = this.dataSource.data.filter((item: any) => {
-          const fromTime = fromDate ? new Date(fromDate).getTime() : 0;
-          const toTime = toDate ? new Date(toDate).getTime() : 0;
-          const itemStart = new Date(item.startDate).getTime();
-          const itemEnd = new Date(item.endDate).getTime();
-          console.log(fromTime)
-          console.log(toTime)
-          if (fromTime > 0 && toTime > 0) {
-            console.log('fromto')
-            return itemStart >= fromTime && itemEnd <= toTime
-          }
-          else if (fromTime > 0 && toTime == 0) {
-            console.log('from')
-            return itemStart >= fromTime
-          }
-          else if (toTime > 0 && fromTime == 0) {
-            console.log('to')
-            return itemEnd <= toTime
-          }
-          else {
-            console.log('not')
-            return true
-          }
-        })
-        this.dataSource.data = filterdata
-      }
+        if (!fromTime && toTime) {
+          return itemEnd <= toTime;
+        }
+        return true;
+      });
     }
+    this.dataSource.data = filterData;
   }
 
-  addProject(){
-    const dialogRef = this.dialog.open(AddEditProjectComponent,{
-      width:'800px',
-      data:{mode:'Add'}
+  addProject() {
+    const dialogRef = this.dialog.open(AddEditProjectComponent, {
+      width: '800px',
+      data: { mode: 'Add' }
     })
-    dialogRef.afterClosed().subscribe((result)=>{
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(result)
-      if(result){
-            let data={
-      message:'You have successfully Added Project',
-      button:'Close',
-      duration:2000
-   }
-   this.commonService.getSnackBar(data)
-this.getProjectList();
+      if (result) {
+        let data = {
+          message: 'You have successfully Added Project',
+          button: 'Close',
+          duration: 2000
+        }
+        this.notificationService.addNotification({ message: 'new project added', type: 'info', timestamp: new Date() });
+        this.commonService.getSnackBar(data)
+        this.getProjectList();
       }
     })
   }
 
-  editProject(id:string){
+  editProject(id: string) {
     console.log(id)
- const dialogRef = this.dialog.open(AddEditProjectComponent,{
-      width:'800px',
-      data:{mode:'Edit',id:id}
+    const dialogRef = this.dialog.open(AddEditProjectComponent, {
+      width: '800px',
+      data: { mode: 'Edit', id: id }
     })
-    dialogRef.afterClosed().subscribe((result)=>{
-      if(result){
-          let data={
-      message:'You have successfully Updated Project',
-      button:'Close',
-      duration:2000
-   }
-   this.commonService.getSnackBar(data)
-         this.getProjectList();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        let data = {
+          message: 'You have successfully Updated Project',
+          button: 'Close',
+          duration: 2000
+        }
+        this.notificationService.addNotification({ message: '1 project updated', type: 'info', timestamp: new Date() });
+        this.commonService.getSnackBar(data)
+        this.getProjectList();
       }
       console.log(result)
     })
   }
 
-    deleteProject(id: string) {
-        console.log(id)
-    this.dialog.open(ConfirmDialogComponent,{
-      data:{
+  deleteProject(id: string) {
+    console.log(id)
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
         title: 'Delete Project',
         message: 'Are you sure you want to delete this project?'
       }
-    }).afterClosed().subscribe((result)=>{
+    }).afterClosed().subscribe((result) => {
       console.log(result)
-      if(result){
-         this.projectService.deleteProjects(id).subscribe((res)=>{
-              let data={
-      message:'You have successfully Deleted Project',
-      button:'Close',
-      duration:2000
-   }
-   this.commonService.getSnackBar(data)
+      if (result) {
+        this.projectService.deleteProjects(id).subscribe((res) => {
+          let data = {
+            message: 'You have successfully Deleted Project',
+            button: 'Close',
+            duration: 2000
+          }
+          this.notificationService.addNotification({ message: '1 project deleted', type: 'warning', timestamp: new Date() });
+          this.commonService.getSnackBar(data)
           console.log(res);
           this.getProjectList();
-         })
+        })
       }
     })
   }
 
-  trackByProjectId(index:number,project:any){
+  trackByProjectId(index: number, project: any) {
     return project.id;
   }
 
-  viewtasks(id:string){
-   console.log(id)
-   this.router.navigate(['/projects',id,'tasks'])
+  viewtasks(id: string) {
+    console.log(id)
+    this.router.navigate(['/projects', id, 'tasks'])
   }
 
 }

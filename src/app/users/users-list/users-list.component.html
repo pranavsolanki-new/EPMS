@@ -9,7 +9,6 @@
 </app-filter-bar>
     <div class="table-container">
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
-            <!-- Name Column -->
             <ng-container *ngFor="let column of displayedColumns;" [matColumnDef]="column">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnLabel[column]}}</th>
                 <td mat-cell *matCellDef="let user" >{{user[column]}}
@@ -26,10 +25,11 @@
                     </span>
                 </td>
             </ng-container>
-            <!-- Header + Row defs -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let user; columns: displayedColumns;" trackBy:trackByUserId></tr>
         </table>
-        <mat-paginator [pageSize]="5" [length]="dataSource.data.length" [pageSizeOptions]="[5,10,20]" showFirstLastButtons="true" (page)="OnPageChange($event)"></mat-paginator>
+        <div class="pagination">
+        <mat-paginator [pageSize]="5" [length]="dataSource.data.length" [pageSizeOptions]="[5,10,20]" showFirstLastButtons="true"></mat-paginator>
+    </div>
     </div>
 </mat-card>
