@@ -242,24 +242,6 @@
       "projectId": "536"
     },
     {
-      "id": "393",
-      "title": "logout button",
-      "status": "Done",
-      "dueDate": "2025-07-06",
-      "description": "logout",
-      "priority": "Medium",
-      "projectId": "536"
-    },
-    {
-      "id": "576",
-      "title": "sidenav ",
-      "status": "To Do",
-      "dueDate": "2025-07-09",
-      "description": "sidenav",
-      "priority": "High",
-      "projectId": "536"
-    },
-    {
       "id": "652",
       "title": "toast app",
       "status": "In Progress",
@@ -353,6 +335,20 @@
       "type": "info",
       "timestamp": "2025-07-06T16:35:50.572Z",
       "read": true
+    },
+    {
+      "id": "366",
+      "message": "1 task deleted",
+      "type": "warning",
+      "timestamp": "2025-07-06T17:35:03.599Z",
+      "read": false
+    },
+    {
+      "id": "365",
+      "message": "1 task deleted",
+      "type": "warning",
+      "timestamp": "2025-07-06T17:35:16.134Z",
+      "read": false
     }
   ]
 }

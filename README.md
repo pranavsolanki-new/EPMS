@@ -1,27 +1,95 @@
-# EPMS
+# 🚀 Enterprise Project Management System (EPMS)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+A modular, scalable, and responsive enterprise-grade project management system built with Angular 16+, featuring real-time project & task tracking, role-based access control, and in-app notifications.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📌 Features
+✅ Project & Task Management  
+✅ User & Role Management (Admin, Project Manager, Developer)  
+✅ Role-based Routing & Guards  
+✅ Dashboard with KPIs, Charts (ngx-charts / Chart.js)  
+✅ In-App Toast Notifications and Badge Alerts  
+✅ Lazy Loading for Feature Modules  
+✅ Angular Reactive Forms with Validations  
+✅ Drag & Drop Task Reordering (Angular CDK)  
+✅ API integration via json-server  
+✅ Global Error Interceptor  
+✅ Modular Architecture and Shared Components  
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📸 Demo Screens (Optional)
+## 📸 Project Screenshots
 
-## Build
+### 🟢 Login Screen
+![Login](screenshots/login.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+###  Signup
+![SignUp](screenshots/signup.png)
 
-## Running unit tests
+### 📊 Dashboard
+![Dashboard](screenshots/dashboard.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 📁 Project Management
+![Projects](screenshots/projects.png)
 
-## Running end-to-end tests
+### ➕ Add New Project
+![Add Project](screenshots/addproject.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 📋 Task Board
+![Tasks](screenshots/task.png)
 
-## Further help
+### 📝 Add New Task
+![Add Task](screenshots/addtask.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 👥 User Management (Admin Only)
+![Users](screenshots/user.png)
+
+### 🔔 Notifications & Toast Alerts
+![Notifications](screenshots/notification.png)
+
+---
+
+## 🛠️ Tech Stack  
+
+- Angular v16+
+- Angular Material
+- RxJS
+- ngx-charts / Chart.js
+- json-server (Mock APIs)
+- Angular CDK (DragDropModule)
+
+---
+
+
+## 📊 Functional Modules
+
+- Authentication Module  
+  Login by role (Admin, PM, Developer), JWT simulation, Route Guards  
+
+- Dashboard Module  
+  Project KPIs, Active Users, Overdue Tasks, Chart visualizations  
+
+- Project Management Module  
+  CRUD, pagination, sorting, assign users, search, status filter  
+
+- Task Management Module  
+  Nested under projects, Add/Edit/Delete, change status, Drag & Drop  
+
+- User Management Module (Admin Only)  
+  User CRUD, role management, password reset  
+
+- Notifications Module  
+  Toast Alerts, Badge Count, Alerts for Due Tasks, New Assignments  
+
+---
+
+## 📢 How to Run Locally
+
+1️⃣ Clone the repository  
+```bash
+git: https://github.com/pranavsolanki-new/EPMS.git
+json-server:  json-server --watch db.json 
+
+
