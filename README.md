@@ -32,7 +32,7 @@ A modular, scalable, and responsive enterprise-grade project management system b
 ![Dashboard](screenshots/dashboard.png)
 
 ### 📁 Project Management
-![Projects](screenshots/projects.png)
+![Projects](screenshots/project.png)
 
 ### ➕ Add New Project
 ![Add Project](screenshots/addproject.png)
