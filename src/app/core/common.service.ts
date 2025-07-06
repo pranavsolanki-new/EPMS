@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-
+  private toastSubject = new Subject<{ type: string, message: string }>();
+  toastState$ = this.toastSubject.asObservable();
   constructor(private snackbar:MatSnackBar) { }
 
   getSnackBar(data:any){
@@ -15,5 +17,9 @@ export class CommonService {
             horizontalPosition:data?.horizontalPosition ? data.horizontalPosition : 'center',
             verticalPosition:data?.verticalPosition ? data.horizontalPosition : 'top'
           })
+  }
+
+  showToast(type: string, message: string) {
+    this.toastSubject.next({ type, message });
   }
 }

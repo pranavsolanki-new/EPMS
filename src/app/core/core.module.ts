@@ -5,6 +5,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { RouterModule } from '@angular/router';
+import { NotificationModule } from '../notification/notification.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,7 +19,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    SharedModule,
+    NotificationModule
   ]
 })
 export class CoreModule { }

@@ -4,6 +4,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <app-toast></app-toast>
     <app-header (toggleSidenav)="sidenav.toggle()" class="header"></app-header>
     <div class="main-content">
       <router-outlet></router-outlet>

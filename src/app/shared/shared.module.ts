@@ -5,6 +5,8 @@ import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastComponent } from './toast/toast.component';
 
 
 
@@ -13,15 +15,17 @@ import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-pass
     FilterBarComponent,
     ConfirmDialogComponent,
     ResetPasswordDialogComponent,
+    ToastComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     FilterBarComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ToastComponent
   ]
 })
 export class SharedModule { }

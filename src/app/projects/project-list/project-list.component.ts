@@ -8,7 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.component';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonService } from 'src/app/core/common.service';
 
 @Component({
@@ -66,10 +66,7 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort
   }
 
-
-
   OnPageChange(event: any) {
-
   }
 
   applyFilters(value: any) {
@@ -124,11 +121,9 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
             console.log('not')
             return true
           }
-
         })
         this.dataSource.data = filterdata
       }
-
     }
   }
 
@@ -200,7 +195,7 @@ this.getProjectList();
   }
 
   viewtasks(id:string){
-    console.log(id)
+   console.log(id)
    this.router.navigate(['/projects',id,'tasks'])
   }
 

@@ -15,11 +15,10 @@ import { AddEditTaskComponent } from './tasks/add-edit-task/add-edit-task.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
+
 @NgModule({
   declarations: [
-    AppComponent,
-   
-   
+    AppComponent,  
   ],
   imports: [
     BrowserModule,

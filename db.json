@@ -201,8 +201,36 @@
   "notifications": [
     {
       "id": "1",
-      "message": "New task assigned to you.",
-      "userId": 3,
+      "message": "New task assigned: Project Alpha",
+      "read": false,
+      "type": "info",
+      "timestamp": "2025-07-05T15:32:00"
+    },
+    {
+      "id": "2",
+      "message": "Server maintenance scheduled at 8PM",
+      "read": true,
+      "type": "warning",
+      "timestamp": "2025-07-05T16:00:00"
+    },
+    {
+      "id": "3",
+      "message": "System maintenance at 8 PM",
+      "read": true,
+      "type": "success",
+      "timestamp": "2025-07-05T16:00:00"
+    },
+    {
+      "id": "4",
+      "message": "Task deadline tomorrow!",
+      "read": true,
+      "type": "warning",
+      "timestamp": "2025-07-05T16:00:00"
+    },
+    {
+      "id": "98",
+      "message": "header added",
+      "type": "info",
       "read": false
     }
   ],

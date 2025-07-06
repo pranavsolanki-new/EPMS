@@ -80,7 +80,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatExpansionModule,
     MatDividerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule { }
