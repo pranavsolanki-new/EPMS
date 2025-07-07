@@ -6,7 +6,7 @@
   <span >Enterprise Project Management System</span>
     <span class="spacer"></span>
     <app-notification-badge></app-notification-badge>
-    <button mat-icon-button  matTooltip="Welcome,{{user.name}}" aria-label="User Account">
+    <button mat-icon-button  matTooltip="Welcome,{{user?.name}}" aria-label="User Account">
     <mat-icon>account_circle</mat-icon>
   </button>
 <button mat-button (click)="logout()">{{loginLogoutButton}}</button>

@@ -71,13 +71,6 @@
       "role": "Admin"
     },
     {
-      "id": "654",
-      "name": "vicky",
-      "email": "vicky@gmail.com",
-      "password": "123456",
-      "role": "Developer"
-    },
-    {
       "name": "Rajkumar",
       "email": "rajkumar@gmail.com",
       "role": "Admin",
@@ -184,6 +177,24 @@
           "name": "Nikku"
         }
       ]
+    },
+    {
+      "name": "Shared Component",
+      "status": "In Progress",
+      "startDate": "2025-07-01",
+      "endDate": "2025-07-16",
+      "description": "shared",
+      "assignedUsers": [
+        {
+          "id": "3",
+          "name": "Developer User"
+        },
+        {
+          "id": "513",
+          "name": "user1"
+        }
+      ],
+      "id": "459"
     }
   ],
   "tasks": [
@@ -249,13 +260,22 @@
       "description": null,
       "priority": "Low",
       "projectId": "536"
+    },
+    {
+      "title": "toast alert",
+      "status": "To Do",
+      "dueDate": "2025-07-10",
+      "description": null,
+      "priority": "High",
+      "id": "116",
+      "projectId": "459"
     }
   ],
   "notifications": [
     {
       "id": "1",
       "message": "New task assigned: Project Alpha",
-      "read": false,
+      "read": true,
       "type": "info",
       "timestamp": "2025-07-05T15:32:00"
     },
@@ -348,6 +368,41 @@
       "message": "1 task deleted",
       "type": "warning",
       "timestamp": "2025-07-06T17:35:16.134Z",
+      "read": false
+    },
+    {
+      "id": "797",
+      "message": "1 userinfo updated",
+      "type": "info",
+      "timestamp": "2025-07-07T07:00:22.646Z",
+      "read": false
+    },
+    {
+      "id": "81",
+      "message": "header added",
+      "type": "info",
+      "timestamp": "2025-07-07T07:00:34.006Z",
+      "read": false
+    },
+    {
+      "id": "141",
+      "message": "new project added",
+      "type": "info",
+      "timestamp": "2025-07-07T07:01:59.339Z",
+      "read": false
+    },
+    {
+      "id": "502",
+      "message": "1 project updated",
+      "type": "info",
+      "timestamp": "2025-07-07T07:02:11.207Z",
+      "read": false
+    },
+    {
+      "id": "878",
+      "message": "header added",
+      "type": "info",
+      "timestamp": "2025-07-07T07:02:36.893Z",
       "read": false
     }
   ]
