@@ -22,9 +22,8 @@ export class NotificationListComponent implements OnInit {
 
   ngOnInit(): void {
     //this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
-         this.notifications$ = this.notificationService.notifications$
+    this.notifications$ = this.notificationService.notifications$
      this.unreadCount = this.notificationService.unreadCount$
-    console.log(this.notifications$)
   }
 
    markAllRead() {

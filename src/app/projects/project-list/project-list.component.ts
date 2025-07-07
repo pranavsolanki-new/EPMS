@@ -53,7 +53,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
         })
         this.dataSource.data = res
         this.filterEmpty = res;
-        console.log(this.dataSource.data)
       },
       error: (err) => { }
     })
@@ -115,7 +114,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
       data: { mode: 'Add' }
     })
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result)
       if (result) {
         let data = {
           message: 'You have successfully Added Project',
@@ -130,7 +128,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   }
 
   editProject(id: string) {
-    console.log(id)
     const dialogRef = this.dialog.open(AddEditProjectComponent, {
       width: '800px',
       data: { mode: 'Edit', id: id }
@@ -146,19 +143,16 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
         this.commonService.getSnackBar(data)
         this.getProjectList();
       }
-      console.log(result)
     })
   }
 
   deleteProject(id: string) {
-    console.log(id)
     this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete Project',
         message: 'Are you sure you want to delete this project?'
       }
     }).afterClosed().subscribe((result) => {
-      console.log(result)
       if (result) {
         this.projectService.deleteProjects(id).subscribe((res) => {
           let data = {
@@ -168,7 +162,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
           }
           this.notificationService.addNotification({ message: '1 project deleted', type: 'warning', timestamp: new Date() });
           this.commonService.getSnackBar(data)
-          console.log(res);
           this.getProjectList();
         })
       }
@@ -180,7 +173,6 @@ export class ProjectListComponent implements OnInit, AfterViewInit {
   }
 
   viewtasks(id: string) {
-    console.log(id)
     this.router.navigate(['/projects', id, 'tasks'])
   }
 

@@ -21,7 +21,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   userData!: any;
   dataSource: any = new MatTableDataSource<any>()
   searchControl = new FormControl('')
-  allUsers:any =[];
+  allUsers: any = [];
   displayedColumns = ['name', 'role', 'email', 'actions']
   columnLabel: any = {
     'name': 'Name',
@@ -33,7 +33,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private userService: UsersService, private dialog: MatDialog, private router: Router,
-    private commonService: CommonService, private route: ActivatedRoute,private notificationService: NotificationService,
+    private commonService: CommonService, private route: ActivatedRoute, private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -43,12 +43,10 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   getUserData() {
     this.userService.getUsers().subscribe({
       next: (res) => {
-        console.log(res)
         this.dataSource.data = res
         this.filterEmpty = res;
       },
       error: (err) => {
-        console.log(err);
       }
     })
   }
@@ -59,10 +57,8 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   }
 
   addUser() {
-    console.log('users/add')
     this.router.navigate(['users/add'])
   }
-
 
   editUser(id: string) {
     this.router.navigate(['edit', id], { relativeTo: this.route })
@@ -78,67 +74,63 @@ export class UsersListComponent implements OnInit, AfterViewInit {
       if (result) {
         this.userService.deleteUser(id).subscribe({
           next: (res) => {
-            console.log(res);
             let data = {
               message: `You have successfully Deleted User`,
               button: 'Close',
               duration: 2000
             }
-            this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
+            this.notificationService.addNotification({ message: 'header added', type: 'info', timestamp: new Date() });
             this.commonService.getSnackBar(data)
             this.getUserData();
           },
           error: (err) => { }
         })
-    }
+      }
     })
   }
-    
 
-applyFilters(value: any) {
-  console.log(value);
 
-  let nullChecker = Object.values(value).every((x) => x === '' || x === null);
-  if (nullChecker) {
-    this.dataSource.data = [...this.filterEmpty];
-    return;
+  applyFilters(value: any) {
+    let nullChecker = Object.values(value).every((x) => x === '' || x === null);
+    if (nullChecker) {
+      this.dataSource.data = [...this.filterEmpty];
+      return;
+    }
+
+    const { name, status } = value;
+    let filteredData = [...this.filterEmpty];
+
+    if (name && name.trim() !== '') {
+      filteredData = filteredData.filter((x: any) =>
+        x.name.toLowerCase().includes(name.trim().toLowerCase())
+      );
+    }
+
+    if (status && status !== 'All') {
+      filteredData = filteredData.filter((x: any) =>
+        x.role.includes(status)
+      );
+    }
+    this.dataSource.data = filteredData;
   }
-
-  const { name, status } = value;
-  let filteredData = [...this.filterEmpty];
-
-  if (name && name.trim() !== '') {
-    filteredData = filteredData.filter((x: any) =>
-      x.name.toLowerCase().includes(name.trim().toLowerCase())
-    );
-  }
-
-  if (status && status !== 'All') {
-    filteredData = filteredData.filter((x: any) =>
-      x.role.includes(status)
-    );
-  }
-  this.dataSource.data = filteredData;
-}
 
   trackByUserId(index: number, user: any) {
     return user.id;
   }
 
-  resetPassword(id:string){
- this.dialog.open(ResetPasswordDialogComponent,{
-      data:{
-        userId:id
+  resetPassword(id: string) {
+    this.dialog.open(ResetPasswordDialogComponent, {
+      data: {
+        userId: id
       }
-    }).afterClosed().subscribe((result)=>{
-      console.log(result)
-      if(result){
-              let data={
-      message:'You have successfully Reset the Password',
-      button:'Close',
-      duration:2000
-   }
-   this.commonService.getSnackBar(data)
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        let data = {
+          message: 'You have successfully Reset the Password',
+          button: 'Close',
+          duration: 2000
+        }
+        this.commonService.getSnackBar(data)
       }
     })
   }

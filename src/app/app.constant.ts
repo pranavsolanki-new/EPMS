@@ -1,6 +1,6 @@
 export const ROLE_TYPE =
   [
-   'Admin',
- 'Project Manager' ,
-     'Developer' 
+    'Admin',
+    'Project Manager',
+    'Developer'
   ]

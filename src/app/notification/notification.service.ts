@@ -20,7 +20,6 @@ export class NotificationService {
   getNotifications() {
      this.http.get<any[]>(this.apiUrl).subscribe({
         next:(notif:any)=>{
-          console.log(notif)
           notif.sort((a:any,b:any)=>{ return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()})
           this.notificationSubject.next(notif)
           const unread = notif.filter((n:any) => !n.read).length;
@@ -39,11 +38,9 @@ export class NotificationService {
     updateNotif= currentNotif.forEach((element:any) => {
           element.read = true;
     });
-    console.log(updateNotif)
    const updateRqst = updateNotif.map((val:any)=>{
     this.http.patch(`${this.apiUrl}/${val.id}`,{read:true})
    })
-   console.log(updateRqst)
    return forkJoin(updateRqst).pipe(tap(()=>{this.notificationSubject.next(updateNotif)}))
   }
 

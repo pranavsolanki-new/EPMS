@@ -15,7 +15,6 @@ export class TaskService {
     return this.http.get<[]>(`${this.baseUrl}/${taskId}`);
   }
 
-
   addTask(task: any) {
     return this.http.post<any>(this.baseUrl, task);
   }

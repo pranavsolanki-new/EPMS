@@ -11,8 +11,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from './shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,  

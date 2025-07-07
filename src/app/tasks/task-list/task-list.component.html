@@ -1,104 +1,102 @@
-
 <mat-card class="tasklist-card">
-    <h2 >Task List</h2>
-<div class="add-button">
-    <button mat-raised-button color="primary" (click)="addTask()">+ Add Task</button>
-</div>
-
- <app-filter-bar
-  [statuses]="['High', 'Medium','Low' ,'All']" [statusLabel]="'Priority'" [showDate]="false"
-  (filtersChanged)="applyFilters($event)">
-</app-filter-bar>
-
-   <div class="filter-sort-bar" >
-  <mat-form-field appearance="fill" style="min-width: 150px;">
-    <mat-label>Sort By</mat-label>
-    <mat-select [(value)]="sortBy" (selectionChange)="applySorting()">
-      <mat-option value="dueDate">Due Date</mat-option>
-      <mat-option value="priority">Priority</mat-option>
-    </mat-select>
-  </mat-form-field>
-  </div>
-
-<div class="task-board">
-    <div class="task-column" cdkDropList  id="todoList" [cdkDropListConnectedTo]="['inProgressList','doneList']" [cdkDropListData]="todoTasks" 
-    (cdkDropListDropped)="drop($event, 'To Do')">
-        <h3>To Do</h3>
-       <div *ngFor="let task of todoTasks">
-              <div class="task-card"  cdkDrag>
-            <div class="task-header">
-                <strong>{{ task.title }}</strong>
-                <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
-            </div>
-            <div class="task-meta">
-                <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
-                <span>Status: {{ task.status }}</span>
-            </div>
-            <div class="task-actions">
-                <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Edit Task">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Delete Task">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </div>
-       </div>
+    <h2>Task List</h2>
+    <div class="add-button">
+        <button mat-raised-button color="primary" (click)="addTask()">+ Add Task</button>
     </div>
 
-    <div class="task-column" cdkDropList  id="inProgressList" [cdkDropListConnectedTo]="['todoList','doneList']"[cdkDropListData]="inProgressTasks"
-        (cdkDropListDropped)="drop($event, 'In Progress')">
-        <h3>In Progress</h3>
-        <div *ngFor="let task of inProgressTasks">
-              <div class="task-card"  cdkDrag>
-            <div class="task-header">
-                <strong>{{ task.title }}</strong>
-                <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
-            </div>
-            <div class="task-meta">
-                <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
-                <span>Status: {{ task.status }}</span>
-            </div>
-            <div class="task-actions">
-                <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Edit Task">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Delete Task">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </div>
-        </div>
+    <app-filter-bar [statuses]="['High', 'Medium','Low' ,'All']" [statusLabel]="'Priority'" [showDate]="false"
+        (filtersChanged)="applyFilters($event)">
+    </app-filter-bar>
+
+    <div class="filter-sort-bar">
+        <mat-form-field appearance="fill" style="min-width: 150px;">
+            <mat-label>Sort By</mat-label>
+            <mat-select [(value)]="sortBy" (selectionChange)="applySorting()">
+                <mat-option value="dueDate">Due Date</mat-option>
+                <mat-option value="priority">Priority</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 
-    <div class="task-column" cdkDropList id="doneList" [cdkDropListConnectedTo]="['todoList','inProgressList']" [cdkDropListData]="doneTasks" 
-     (cdkDropListDropped)="drop($event, 'Done')">
-        <h3>Done</h3>
-        <div *ngFor="let task of doneTasks">
-              <div class="task-card"  cdkDrag>
-            <div class="task-header">
-                <strong>{{ task.title }}</strong>
-                <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
-            </div>
-            <div class="task-meta">
-                <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
-                <span>Status: {{ task.status }}</span>
-            </div>
-            <div class="task-actions">
-                <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Edit Task">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
-                    matTooltip="Delete Task">
-                    <mat-icon>delete</mat-icon>
-                </button>
+    <div class="task-board">
+        <div class="task-column" cdkDropList id="todoList" [cdkDropListConnectedTo]="['inProgressList','doneList']"
+            [cdkDropListData]="todoTasks" (cdkDropListDropped)="drop($event, 'To Do')">
+            <h3>To Do</h3>
+            <div *ngFor="let task of todoTasks">
+                <div class="task-card" cdkDrag>
+                    <div class="task-header">
+                        <strong>{{ task.title }}</strong>
+                        <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
+                    </div>
+                    <div class="task-meta">
+                        <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
+                        <span>Status: {{ task.status }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Edit Task">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Delete Task">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="task-column" cdkDropList id="inProgressList" [cdkDropListConnectedTo]="['todoList','doneList']"
+            [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="drop($event, 'In Progress')">
+            <h3>In Progress</h3>
+            <div *ngFor="let task of inProgressTasks">
+                <div class="task-card" cdkDrag>
+                    <div class="task-header">
+                        <strong>{{ task.title }}</strong>
+                        <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
+                    </div>
+                    <div class="task-meta">
+                        <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
+                        <span>Status: {{ task.status }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Edit Task">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Delete Task">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-column" cdkDropList id="doneList" [cdkDropListConnectedTo]="['todoList','inProgressList']"
+            [cdkDropListData]="doneTasks" (cdkDropListDropped)="drop($event, 'Done')">
+            <h3>Done</h3>
+            <div *ngFor="let task of doneTasks">
+                <div class="task-card" cdkDrag>
+                    <div class="task-header">
+                        <strong>{{ task.title }}</strong>
+                        <span class="priority" [ngClass]="task.priority">{{task.priority}}</span>
+                    </div>
+                    <div class="task-meta">
+                        <span>Due: {{ task.dueDate | date:'dd MMM' }}</span>
+                        <span>Status: {{ task.status }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button mat-icon-button color="primary" (click)="editTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Edit Task">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteTask(task?.id);$event.stopPropagation()"
+                            matTooltip="Delete Task">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>

@@ -23,14 +23,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.dashboardService.getDashboardStats().subscribe({
       next: (res) => {
-        console.log(res)
        this.dashboardStats = res
       },
     })
 
     this.dashboardService.getProjectStatus().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.chartLabels = res.labels;
         this.chartData = res.data
       }

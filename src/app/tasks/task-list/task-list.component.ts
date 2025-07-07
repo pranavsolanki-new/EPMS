@@ -25,24 +25,21 @@ export class TaskListComponent implements OnInit {
   dropList = ['toDoList', 'inProgressList', 'doneList']
 
   constructor(private taskService: TaskService, private router: Router, private route: ActivatedRoute,
-    private dialog: MatDialog, private commonService: CommonService,private notificationService: NotificationService,) {
+    private dialog: MatDialog, private commonService: CommonService, private notificationService: NotificationService,) {
   }
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('projectId') ?? '';
-    console.log(this.projectId)
     this.getTasksByProjectId()
   }
 
   getTasksByProjectId() {
     this.taskService.getTasksByProject(this.projectId).subscribe({
       next: (res) => {
-        console.log(res)
         this.allTasks = res;
         this.filterEmpty = res
         this.filterData(res);
       },
       error: (err) => {
-        console.log(err)
       }
     })
   }
@@ -54,14 +51,13 @@ export class TaskListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>, newStatus: string) {
-    console.log(newStatus, event)
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
     else {
       const task = event.previousContainer.data[event.previousIndex];
       task.status = newStatus;
-      console.log(task)
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -69,9 +65,7 @@ export class TaskListComponent implements OnInit {
         event.currentIndex
       );
 
-      console.log(task)
       this.taskService.updateTask(task).subscribe((res) => {
-        console.log(res)
       })
     }
   }
@@ -81,7 +75,6 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(id: string) {
-    console.log(id)
     this.router.navigate(['edit', id], { relativeTo: this.route })
   }
 
@@ -92,22 +85,19 @@ export class TaskListComponent implements OnInit {
         message: 'Are you sure you want to delete this project?'
       }
     }).afterClosed().subscribe((result: any) => {
-      console.log(result)
       if (result) {
         this.taskService.deleteTask(id).subscribe({
           next: (res) => {
-            console.log(res)
             let data = {
               message: 'You have successfully Deleted Task',
               button: 'Close',
               duration: 2000
             }
-            this.notificationService.addNotification({message:'1 task deleted',type:'warning',timestamp:new Date()});
+            this.notificationService.addNotification({ message: '1 task deleted', type: 'warning', timestamp: new Date() });
             this.commonService.getSnackBar(data)
-             this.getTasksByProjectId()
+            this.getTasksByProjectId()
           },
           error: (err) => {
-            console.log(err)
           }
         })
       }
@@ -115,7 +105,6 @@ export class TaskListComponent implements OnInit {
   }
 
   applyFilters(value?: any) {
-    console.log(value);
     let nullChecker = Object.values(value).every((x) => x === '' || x === null);
     if (nullChecker) {
       this.filterData(this.filterEmpty);

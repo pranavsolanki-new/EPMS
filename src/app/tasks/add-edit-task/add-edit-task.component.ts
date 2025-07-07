@@ -20,7 +20,7 @@ export class AddEditTaskComponent implements OnInit {
   mode = '';
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private taskService: TaskService,
-    private router: Router, private commonService: CommonService,private notificationService: NotificationService,) {
+    private router: Router, private commonService: CommonService, private notificationService: NotificationService,) {
 
   }
 
@@ -31,11 +31,9 @@ export class AddEditTaskComponent implements OnInit {
       this.taskId = this.route.snapshot.paramMap.get('taskId') ?? '';
       this.taskService.getTasks(this.taskId).subscribe({
         next: (res) => {
-          console.log(res)
           this.createForm(res);
         },
         error: (err) => {
-          console.log(err)
         }
       })
     }
@@ -71,47 +69,42 @@ export class AddEditTaskComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.taskForm)
     this.parseResponse()
     if (this.mode == 'add') {
       this.taskService.addTask(this.taskForm.value).subscribe({
         next: (res) => {
-          console.log(res)
           let data = {
             message: 'You have successfully Added Task',
             button: 'Close',
             duration: 2000
           }
-          this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
+          this.notificationService.addNotification({ message: 'header added', type: 'info', timestamp: new Date() });
           this.commonService.getSnackBar(data)
           this.router.navigate(['/projects', this.projectId, 'tasks'])
         },
         error: (err) => {
-          console.log(err)
         }
       })
     }
     else {
       this.taskService.updateTask(this.taskForm.value).subscribe({
         next: (res) => {
-          console.log(res)
           let data = {
             message: 'You have successfully Updated Task',
             button: 'Close',
             duration: 2000
           }
-          this.notificationService.addNotification({message:'header added',type:'info',timestamp:new Date()});
+          this.notificationService.addNotification({ message: 'header added', type: 'info', timestamp: new Date() });
           this.commonService.getSnackBar(data)
           this.router.navigate(['/projects', this.projectId, 'tasks'])
         },
         error: (err) => {
-          console.log(err)
         }
       })
     }
   }
 
-  onCancel(){
+  onCancel() {
     this.router.navigate(['/projects', this.projectId, 'tasks'])
   }
 }

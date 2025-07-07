@@ -27,7 +27,6 @@ export class AddEditProjectComponent {
     this.authService.getUsers().subscribe((res) => {
       this.users = res;
     })
-    console.log(this.data)
     if (this?.data['id']) {
       this.projectService.getProjectListData(this?.data['id']).subscribe({
         next: (res: any) => {
@@ -56,7 +55,6 @@ export class AddEditProjectComponent {
     let endDate = '';
     let tempStart = this.projectForm.value['startDate']
     let tempEnd = this.projectForm.value['endDate']
-    console.log(this.projectForm.value)
     const assignedUsers = this.projectForm.value['assignedUsers'].map((id: any) => {
       const user = this.users.find((y: any) => y.id == id);
       return { id: user.id, name: user.name }
@@ -77,26 +75,20 @@ export class AddEditProjectComponent {
   submit() {
     this.parseResponse();
     if (this.data.mode == 'Add') {
-      console.log(this.projectForm);
       this.projectService.addProjects(this.projectForm.value).subscribe({
         next: (res) => {
-          console.log(res)
           this.dialogRef.close(res);
         },
         error: (err) => {
-          console.log(err)
         }
       })
     }
     else {
-      console.log(this.projectForm.value)
       this.projectService.editProjects(this.projectForm.value).subscribe({
         next: (res) => {
-          console.log(res)
           this.dialogRef.close(res);
         },
         error: (err) => {
-          console.log(err);
         }
       })
     }

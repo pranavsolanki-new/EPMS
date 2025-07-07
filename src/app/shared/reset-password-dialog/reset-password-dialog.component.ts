@@ -27,8 +27,6 @@ export class ResetPasswordDialogComponent {
       confirmPassword: ['', Validators.required]
     }, { validators: this.passwordValidator })
     this.passwordForm.valueChanges.subscribe((res) => {
-      console.log(res)
-
       this.passwordForm.updateValueAndValidity({ emitEvent: false })
     })
   }
@@ -36,13 +34,11 @@ export class ResetPasswordDialogComponent {
   passwordValidator(group: FormGroup) {
     const newpass = group.get('newPassword')?.value;
     const confirmpass = group.get('confirmPassword')?.value;
-    console.log(newpass, confirmpass)
     return newpass == confirmpass ? null : { mismatch: true }
   }
 
   onSubmit() {
     if (this.passwordForm.invalid) return;
-    console.log(this.passwordForm.value['confirmPassword'])
     let submitForm = {
       id: this.data?.userId,
       password: this.passwordForm.value['confirmPassword']
@@ -52,7 +48,6 @@ export class ResetPasswordDialogComponent {
         this.dialogRef.close(true);
       },
       error: (err) => {
-        console.error('Reset password failed', err);
       }
     })
   }

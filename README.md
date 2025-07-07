@@ -25,7 +25,7 @@ A modular, scalable, and responsive enterprise-grade project management system b
 ### 🟢 Login Screen
 ![Login](screenshots/login.png)
 
-###  Signup
+### 🟢 Signup
 ![SignUp](screenshots/signup.png)
 
 ### 📊 Dashboard

@@ -20,7 +20,6 @@ export class NotificationBadgeComponent implements OnInit{
       this.unreadCount$ = this.notificationService.notifications$.pipe(
       map((notifications) => notifications.filter((n) => !n.read).length)
     );
-    console.log(this.unreadCount$);
   }
 
   navigateToNotification(){
